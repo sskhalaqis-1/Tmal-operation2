@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coffee Ops MVP</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow" data-i18n="appTagline"></p>
+        <h1 data-i18n="appName"></h1>
+      </div>
+      <div class="top-actions">
+        <button class="secondary" id="languageButton" type="button"></button>
+        <nav class="tabs" aria-label="Main screens">
+          <button class="tab active" data-screen="staff" data-i18n="staff"></button>
+          <button class="tab" data-screen="admin" data-i18n="admin"></button>
+        </nav>
+        <button class="secondary hidden" id="logoutButton" type="button" data-i18n="logout"></button>
+      </div>
+    </header>
+
+    <main>
+      <section id="loginScreen" class="screen active">
+        <div class="login-wrap">
+          <section class="panel login-panel">
+            <p class="eyebrow" data-i18n="loginEyebrow"></p>
+            <h2 data-i18n="loginTitle"></h2>
+            <p class="section-help" data-i18n="loginHelp"></p>
+            <form id="loginForm" class="form-grid">
+              <label>
+                <span data-i18n="role"></span>
+                <select name="role" id="roleSelect">
+                  <option value="staff" data-i18n="staffRole"></option>
+                  <option value="admin" data-i18n="adminRole"></option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="employeeName"></span>
+                <input name="employee" data-i18n-placeholder="employeePlaceholder" />
+              </label>
+              <label id="pinField">
+                <span data-i18n="staffPin"></span>
+                <input name="pin" inputmode="numeric" data-i18n-placeholder="pinPlaceholder" />
+              </label>
+              <label id="passwordField" class="hidden">
+                <span data-i18n="adminPassword"></span>
+                <input name="password" type="password" data-i18n-placeholder="passwordPlaceholder" />
+              </label>
+              <button type="submit" class="primary" data-i18n="loginButton"></button>
+            </form>
+            <p class="hint" data-i18n="demoLoginHint"></p>
+          </section>
+        </div>
+      </section>
+
+      <section id="staffScreen" class="screen">
+        <div class="staff-grid">
+          <aside class="quick-panel">
+            <h2 data-i18n="today"></h2>
+            <p id="todayText"></p>
+            <p class="signed-in" id="signedInText"></p>
+            <div class="mini-stats">
+              <div><strong id="miniChecks">0</strong><span data-i18n="checklists"></span></div>
+              <div><strong id="miniInv">0</strong><span data-i18n="counts"></span></div>
+              <div><strong id="miniIssues">0</strong><span data-i18n="openIssues"></span></div>
+            </div>
+          </aside>
+
+          <div class="form-stack">
+            <section class="panel">
+              <div class="panel-title">
+                <div>
+                  <h2 data-i18n="dailyChecklist"></h2>
+                  <p class="section-help" data-i18n="dailyChecklistHelp"></p>
+                </div>
+                <span class="badge" data-i18n="openingClosing"></span>
+              </div>
+              <form id="checklistForm" class="form-grid">
+                <label><span data-i18n="employeeName"></span><input name="employee" required data-i18n-placeholder="employeePlaceholder" /></label>
+                <label><span data-i18n="branch"></span><select name="branch" id="checklistBranch"></select></label>
+                <label><span data-i18n="shift"></span><select name="shift" class="shiftSelect"></select></label>
+                <label><span data-i18n="checklistType"></span><select name="type" class="checklistTypeSelect"></select></label>
+                <label><span data-i18n="fridgeTemp"></span><input name="fridgeTemp" type="number" step="0.1" placeholder="4.0" /></label>
+                <label><span data-i18n="submissionDate"></span><input name="submissionDate" type="date" /></label>
+                <label class="wide"><span data-i18n="barPhoto"></span><input name="photo" type="file" accept="image/*" /></label>
+                <div class="wide task-box" id="checklistTasks"></div>
+                <label class="wide"><span data-i18n="notesIssues"></span><textarea name="notes" rows="3" data-i18n-placeholder="notesPlaceholder"></textarea></label>
+                <button type="submit" class="primary" data-i18n="submitChecklist"></button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="panel-title">
+                <div>
+                  <h2 data-i18n="dailyInventory"></h2>
+                  <p class="section-help" data-i18n="dailyInventoryHelp"></p>
+                </div>
+                <span class="badge" data-i18n="comparesPrevious"></span>
+              </div>
+              <form id="inventoryForm">
+                <div class="form-grid">
+                  <label><span data-i18n="employeeName"></span><input name="employee" required data-i18n-placeholder="employeePlaceholder" /></label>
+                  <label><span data-i18n="branch"></span><select name="branch" id="inventoryBranch"></select></label>
+                  <label><span data-i18n="shift"></span><select name="shift" class="shiftSelect"></select></label>
+                  <label><span data-i18n="submissionDate"></span><input name="submissionDate" type="date" /></label>
+                </div>
+                <div id="inventoryItems" class="inventory-list"></div>
+                <button type="submit" class="primary" data-i18n="submitInventory"></button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="panel-title">
+                <div>
+                  <h2 data-i18n="shortagesIssues"></h2>
+                  <p class="section-help" data-i18n="shortagesIssuesHelp"></p>
+                </div>
+                <span class="badge" data-i18n="openByDefault"></span>
+              </div>
+              <form id="issueForm" class="form-grid">
+                <label><span data-i18n="employeeName"></span><input name="employee" required data-i18n-placeholder="employeePlaceholder" /></label>
+                <label><span data-i18n="branch"></span><select name="branch" id="issueBranch"></select></label>
+                <label><span data-i18n="shift"></span><select name="shift" class="shiftSelect"></select></label>
+                <label><span data-i18n="issueType"></span><select name="type" id="issueType"></select></label>
+                <label><span data-i18n="priority"></span><select name="priority" id="prioritySelect"></select></label>
+                <label><span data-i18n="submissionDate"></span><input name="submissionDate" type="date" /></label>
+                <label class="wide"><span data-i18n="details"></span><textarea name="details" required rows="3" data-i18n-placeholder="detailsPlaceholder"></textarea></label>
+                <button type="submit" class="primary" data-i18n="reportIssue"></button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section id="adminScreen" class="screen">
+        <section class="admin-hero">
+          <div>
+            <p class="eyebrow" data-i18n="ownerDashboard"></p>
+            <h2 data-i18n="dailyOperatingView"></h2>
+            <p class="section-help" data-i18n="dailyOperatingHelp"></p>
+          </div>
+          <form id="salesForm" class="upload-box">
+            <label><span data-i18n="uploadPos"></span><input name="salesFile" type="file" accept=".xlsx,.xlsm,.csv" required /></label>
+            <button type="submit" class="primary" data-i18n="uploadSales"></button>
+          </form>
+        </section>
+
+        <section class="metric-grid">
+          <article class="metric"><span data-i18n="todaySubmissions"></span><strong id="dashSubmissions">0</strong><small data-i18n="todaySubmissionsCardHelp"></small></article>
+          <article class="metric urgent-card"><span data-i18n="missingSubmissions"></span><strong id="dashMissingCount">0</strong><small data-i18n="missingSubmissionsCardHelp"></small></article>
+          <article class="metric"><span data-i18n="openIssues"></span><strong id="dashIssues">0</strong><small data-i18n="openIssuesCardHelp"></small></article>
+          <article class="metric"><span data-i18n="latestSales"></span><strong id="dashSales"></strong><small id="dashOrders"></small></article>
+        </section>
+
+        <div class="dashboard-grid admin-sections">
+          <section class="panel">
+            <h2 data-i18n="todaySubmissions"></h2>
+            <p class="section-help" data-i18n="todaySubmissionsHelp"></p>
+            <div id="todaySubmissionsList" class="list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="missingSubmissions"></h2>
+            <p class="section-help" data-i18n="missingSubmissionsHelp"></p>
+            <div id="missingSubmissionsList" class="list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="inventoryChanges"></h2>
+            <p class="section-help" data-i18n="inventoryChangesHelp"></p>
+            <div id="inventoryChanges" class="list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="openIssues"></h2>
+            <p class="section-help" data-i18n="openIssuesHelp"></p>
+            <div id="issueList" class="issue-list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="salesUploadSummary"></h2>
+            <p class="section-help" data-i18n="salesUploadSummaryHelp"></p>
+            <div id="salesSummary" class="list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="weeklySummary"></h2>
+            <p class="section-help" data-i18n="weeklySummaryHelp"></p>
+            <div id="weeklySummary" class="list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/translations.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
