@@ -22,7 +22,7 @@ except Exception:  # pragma: no cover - startup message handles this
 
 
 ROOT = Path(__file__).resolve().parent
-APP_DIR = ROOT / "app"
+APP_DIR = ROOT 
 DEPLOY_DATA_DIR = os.environ.get("COFFEE_OPS_DATA_DIR") or os.environ.get("RAILWAY_VOLUME_MOUNT_PATH")
 DATA_DIR = Path(DEPLOY_DATA_DIR).resolve() if DEPLOY_DATA_DIR else ROOT / "data"
 STORE_FILE = DATA_DIR / "store.json"
