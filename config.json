@@ -1,0 +1,58 @@
+{
+  "branches": ["Main Branch", "Training Bar"],
+  "checklistTasks": {
+    "opening": [
+      "Dial in espresso and record notes",
+      "Check grinder hoppers and bean levels",
+      "Turn on espresso machine and check pressure",
+      "Prepare milk station and backup pitchers",
+      "Check fridge temperature",
+      "Set up cups, lids, sleeves, and bags"
+    ],
+    "closing": [
+      "Backflush espresso machine",
+      "Clean grinders and counters",
+      "Restock bar supplies for opening",
+      "Empty bins and wipe floor area",
+      "Check fridges are closed and labeled",
+      "Submit bar photo before leaving"
+    ],
+    "cleaning": [
+      "Clean steam wands",
+      "Sanitize work surfaces",
+      "Wash knock box and drip trays",
+      "Clean dessert display",
+      "Sweep and mop bar area"
+    ],
+    "machine": [
+      "Espresso machine ready",
+      "Grinders calibrated",
+      "Water filter pressure normal",
+      "POS and receipt printer working"
+    ]
+  },
+  "inventoryItems": [
+    {"id": "beans_house", "name": "House espresso beans", "category": "Coffee Beans", "unit": "kg"},
+    {"id": "beans_filter", "name": "Filter coffee beans", "category": "Coffee Beans", "unit": "kg"},
+    {"id": "milk_full", "name": "Full-fat milk", "category": "Milk", "unit": "cartons"},
+    {"id": "milk_oat", "name": "Oat milk", "category": "Milk", "unit": "cartons"},
+    {"id": "cups_8oz", "name": "8oz cups", "category": "Cups", "unit": "pcs"},
+    {"id": "cups_12oz", "name": "12oz cups", "category": "Cups", "unit": "pcs"},
+    {"id": "lids_8oz", "name": "8oz lids", "category": "Lids", "unit": "pcs"},
+    {"id": "lids_12oz", "name": "12oz lids", "category": "Lids", "unit": "pcs"},
+    {"id": "bags", "name": "Takeaway bags", "category": "Packaging", "unit": "pcs"},
+    {"id": "napkins", "name": "Napkins", "category": "Packaging", "unit": "packs"},
+    {"id": "croissants", "name": "Croissants", "category": "Desserts", "unit": "pcs"},
+    {"id": "cookies", "name": "Cookies", "category": "Desserts", "unit": "pcs"},
+    {"id": "straws", "name": "Straws", "category": "Bar Supplies", "unit": "pcs"},
+    {"id": "date_labels", "name": "Date labels", "category": "Bar Supplies", "unit": "rolls"}
+  ],
+  "issueTypes": [
+    "Shortage",
+    "Expired product",
+    "Missing date label",
+    "Maintenance issue",
+    "Repeated mistake",
+    "Workflow problem"
+  ]
+}
