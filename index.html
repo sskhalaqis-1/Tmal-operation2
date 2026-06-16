@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coffee Ops MVP</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow" data-i18n="appTagline"></p>
+        <h1 data-i18n="appName"></h1>
+      </div>
+      <div class="top-actions">
+        <button class="secondary" id="languageButton" type="button"></button>
+        <nav class="tabs" aria-label="Main screens">
+          <button class="tab active" data-screen="staff" data-i18n="staff"></button>
+          <button class="tab" data-screen="admin" data-i18n="admin"></button>
+        </nav>
+        <button class="secondary hidden" id="logoutButton" type="button" data-i18n="logout"></button>
+      </div>
+    </header>
+
+    <main>
+      <section id="loginScreen" class="screen active">
+        <div class="login-wrap">
+          <section class="panel login-panel">
+            <p class="eyebrow" data-i18n="loginEyebrow"></p>
+            <h2 data-i18n="loginTitle"></h2>
+            <p class="section-help" data-i18n="loginHelp"></p>
+            <form id="loginForm" class="form-grid">
+              <label>
+                <span data-i18n="role"></span>
+                <select name="role" id="roleSelect">
+                  <option value="staff" data-i18n="staffRole"></option>
+                  <option value="admin" data-i18n="adminRole"></option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="employeeName"></span>
+                <input name="employee" data-i18n-placeholder="employeePlaceholder" />
+              </label>
+              <label id="pinField">
+                <span data-i18n="staffPin"></span>
+                <input name="pin" inputmode="numeric" data-i18n-placeholder="pinPlaceholder" />
+              </label>
+              <label id="passwordField" class="hidden">
+                <span data-i18n="adminPassword"></span>
+                <input name="password" type="password" data-i18n-placeholder="passwordPlaceholder" />
+              </label>
+              <button type="submit" class="primary" data-i18n="loginButton"></button>
+            </form>
+            <p class="hint" data-i18n="demoLoginHint"></p>
+          </section>
+        </div>
+      </section>
+
+      <section id="staffScreen" class="screen">
+        <div class="staff-grid">
+          <aside class="quick-panel">
+            <h2 data-i18n="today"></h2>
+            <p id="todayText"></p>
+            <p class="signed-in" id="signedInText"></p>
+            <div class="mini-stats">
+              <div><strong id="miniChecks">0</strong><span data-i18n="checklists"></span></div>
+              <div><strong id="miniInv">0</strong><span data-i18n="counts"></span></div>
+              <div><strong id="miniIssues">0</strong><span data-i18n="openIssues"></span></div>
+            </div>
+          </aside>
+
+          <div class="form-stack">
+            <section class="panel">
+              <div class="panel-title">
+                <div>
+                  <h2 data-i18n="dailyChecklist"></h2>
+                  <p class="section-help" data-i18n="dailyChecklistHelp"></p>
+                </div>
+                <span class="badge" data-i18n="roleChecklist"></span>
+              </div>
+              <form id="checklistForm" class="form-grid">
+                <label><span data-i18n="employeeName"></span><input name="employee" required data-i18n-placeholder="employeePlaceholder" /></label>
+                <label><span data-i18n="branch"></span><select name="branch" id="checklistBranch"></select></label>
+                <label><span data-i18n="shift"></span><select name="shift" class="shiftSelect"></select></label>
+                <label><span data-i18n="submissionDate"></span><input name="submissionDate" type="date" /></label>
+                <label class="wide"><span data-i18n="baristaRole"></span><select name="baristaRole" id="baristaRoleSelect"></select></label>
+
+                <div class="wide role-checklist" data-role-section="head">
+                  <h3 data-i18n="startOfShift"></h3>
+                  <div class="form-grid">
+                    <label><span data-i18n="tdsWaterFilter"></span><input name="tdsWaterFilter" type="number" step="0.01" required /></label>
+                    <label><span data-i18n="tdsEspressoMachineWater"></span><input name="tdsEspressoMachineWater" type="number" step="0.01" required /></label>
+                    <label><span data-i18n="tdsVeloKettle"></span><input name="tdsVeloKettle" type="number" step="0.01" required /></label>
+                    <label><span data-i18n="tdsBrewistaKettle"></span><input name="tdsBrewistaKettle" type="number" step="0.01" required /></label>
+                    <label><span data-i18n="machinePressure"></span><input name="machinePressure" type="number" step="0.01" required /></label>
+                  </div>
+                  <div class="task-box">
+                    <label class="check-row"><span data-i18n="espressoGrinderChecked"></span><input type="checkbox" name="espressoGrinderChecked" /></label>
+                    <label class="check-row"><span data-i18n="dripGrinderChecked"></span><input type="checkbox" name="dripGrinderChecked" /></label>
+                  </div>
+                  <h3 data-i18n="espressoCalibration"></h3>
+                  <div class="form-grid">
+                    <label><span data-i18n="doseGrams"></span><input name="doseGrams" type="number" step="0.01" /></label>
+                    <label><span data-i18n="yieldGrams"></span><input name="yieldGrams" type="number" step="0.01" /></label>
+                    <label><span data-i18n="timeSeconds"></span><input name="timeSeconds" type="number" step="0.01" /></label>
+                    <label><span data-i18n="espressoCalibrationPhoto"></span><input name="espressoCalibrationPhoto" type="file" accept="image/*" required /></label>
+                  </div>
+                  <label class="check-row"><span data-i18n="startShiftIssuesQuestion"></span><input type="checkbox" name="hasStartShiftIssue" data-toggle-target="startShiftIssueDescription" /></label>
+                  <label class="wide conditional-field hidden" data-conditional="startShiftIssueDescription"><span data-i18n="issueDescription"></span><textarea name="startShiftIssueDescription" rows="3"></textarea></label>
+                  <h3 data-i18n="duringShift"></h3>
+                  <label class="check-row"><span data-i18n="remadeDrinksQuestion"></span><input type="checkbox" name="hasRemadeDrinks" data-toggle-target="remadeDrinksDetails" /></label>
+                  <div class="form-grid conditional-field hidden" data-conditional="remadeDrinksDetails">
+                    <label><span data-i18n="numberOfRemadeDrinks"></span><input name="numberOfRemadeDrinks" type="number" min="0" /></label>
+                    <label><span data-i18n="remakeReason"></span><input name="remakeReason" /></label>
+                  </div>
+                  <h3 data-i18n="endOfShift"></h3>
+                  <label class="check-row"><span data-i18n="handoverCompleted"></span><input type="checkbox" name="handoverCompleted" /></label>
+                  <label><span data-i18n="barClosingPhoto"></span><input name="barClosingPhoto" type="file" accept="image/*" required /></label>
+                </div>
+
+                <div class="wide role-checklist hidden" data-role-section="assistant">
+                  <h3 data-i18n="startOfShift"></h3>
+                  <div class="form-grid">
+                    <label><span data-i18n="milkFridgeTemperature"></span><input name="milkFridgeTemperature" type="number" step="0.1" /></label>
+                    <label><span data-i18n="dessertFridgeTemperature"></span><input name="dessertFridgeTemperature" type="number" step="0.1" /></label>
+                  </div>
+                  <div class="task-box">
+                    <label class="check-row"><span data-i18n="syrupsDatesChecked"></span><input type="checkbox" name="syrupsDatesChecked" /></label>
+                    <label class="check-row"><span data-i18n="dessertDatesChecked"></span><input type="checkbox" name="dessertDatesChecked" /></label>
+                    <label class="check-row"><span data-i18n="expiredProductsRemoved"></span><input type="checkbox" name="expiredProductsRemoved" /></label>
+                    <label class="check-row"><span data-i18n="takeawayCupsRefilled"></span><input type="checkbox" name="takeawayCupsRefilled" /></label>
+                    <label class="check-row"><span data-i18n="lidsRefilled"></span><input type="checkbox" name="lidsRefilled" /></label>
+                    <label class="check-row"><span data-i18n="sugarRefilled"></span><input type="checkbox" name="sugarRefilled" /></label>
+                    <label class="check-row"><span data-i18n="saucesRefilled"></span><input type="checkbox" name="saucesRefilled" /></label>
+                    <label class="check-row"><span data-i18n="coffeeBeansRefilled"></span><input type="checkbox" name="coffeeBeansRefilled" /></label>
+                    <label class="check-row"><span data-i18n="suppliesRefilled"></span><input type="checkbox" name="suppliesRefilled" /></label>
+                  </div>
+                  <label class="check-row"><span data-i18n="multipleOpenedBagsQuestion"></span><input type="checkbox" name="hasMultipleOpenedBags" data-toggle-target="openedCoffeeName" /></label>
+                  <label class="wide conditional-field hidden" data-conditional="openedCoffeeName"><span data-i18n="coffeeName"></span><input name="openedCoffeeName" /></label>
+                  <div class="task-box">
+                    <label class="check-row"><span data-i18n="fridgesOrganized"></span><input type="checkbox" name="fridgesOrganized" /></label>
+                    <label class="check-row"><span data-i18n="olderProductsInFront"></span><input type="checkbox" name="olderProductsInFront" /></label>
+                    <label class="check-row"><span data-i18n="noUndatedOpenedProducts"></span><input type="checkbox" name="noUndatedOpenedProducts" /></label>
+                  </div>
+                  <h3 data-i18n="requiredPhotos"></h3>
+                  <div class="form-grid">
+                    <label><span data-i18n="milkFridgePhoto"></span><input name="milkFridgePhotoStart" type="file" accept="image/*" required /></label>
+                    <label><span data-i18n="dessertFridgePhoto"></span><input name="dessertFridgePhotoStart" type="file" accept="image/*" required /></label>
+                    <label><span data-i18n="preparedBarPhoto"></span><input name="preparedBarPhoto" type="file" accept="image/*" required /></label>
+                  </div>
+                  <h3 data-i18n="endOfShift"></h3>
+                  <div class="form-grid">
+                    <label><span data-i18n="milkFridgePhoto"></span><input name="milkFridgePhotoEnd" type="file" accept="image/*" required /></label>
+                    <label><span data-i18n="dessertFridgePhoto"></span><input name="dessertFridgePhotoEnd" type="file" accept="image/*" required /></label>
+                  </div>
+                </div>
+                <button type="submit" class="primary" data-i18n="submitChecklist"></button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="panel-title">
+                <div>
+                  <h2 data-i18n="dailyInventory"></h2>
+                  <p class="section-help" data-i18n="dailyInventoryHelp"></p>
+                </div>
+                <span class="badge" data-i18n="comparesPrevious"></span>
+              </div>
+              <form id="inventoryForm">
+                <div class="form-grid">
+                  <label><span data-i18n="employeeName"></span><input name="employee" required data-i18n-placeholder="employeePlaceholder" /></label>
+                  <label><span data-i18n="branch"></span><select name="branch" id="inventoryBranch"></select></label>
+                  <label><span data-i18n="shift"></span><select name="shift" class="shiftSelect"></select></label>
+                  <label><span data-i18n="submissionDate"></span><input name="submissionDate" type="date" /></label>
+                </div>
+                <div id="inventoryItems" class="inventory-list"></div>
+                <button type="submit" class="primary" data-i18n="submitInventory"></button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="panel-title">
+                <div>
+                  <h2 data-i18n="shortagesIssues"></h2>
+                  <p class="section-help" data-i18n="shortagesIssuesHelp"></p>
+                </div>
+                <span class="badge" data-i18n="openByDefault"></span>
+              </div>
+              <form id="issueForm" class="form-grid">
+                <label><span data-i18n="employeeName"></span><input name="employee" required data-i18n-placeholder="employeePlaceholder" /></label>
+                <label><span data-i18n="branch"></span><select name="branch" id="issueBranch"></select></label>
+                <label><span data-i18n="shift"></span><select name="shift" class="shiftSelect"></select></label>
+                <label><span data-i18n="issueType"></span><select name="type" id="issueType"></select></label>
+                <label><span data-i18n="priority"></span><select name="priority" id="prioritySelect"></select></label>
+                <label><span data-i18n="submissionDate"></span><input name="submissionDate" type="date" /></label>
+                <label class="wide"><span data-i18n="details"></span><textarea name="details" required rows="3" data-i18n-placeholder="detailsPlaceholder"></textarea></label>
+                <button type="submit" class="primary" data-i18n="reportIssue"></button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section id="adminScreen" class="screen">
+        <section class="admin-hero">
+          <div>
+            <p class="eyebrow" data-i18n="ownerDashboard"></p>
+            <h2 data-i18n="dailyOperatingView"></h2>
+            <p class="section-help" data-i18n="dailyOperatingHelp"></p>
+          </div>
+          <form id="salesForm" class="upload-box">
+            <label><span data-i18n="uploadPos"></span><input name="salesFile" type="file" accept=".xlsx,.xlsm,.csv" required /></label>
+            <button type="submit" class="primary" data-i18n="uploadSales"></button>
+          </form>
+        </section>
+
+        <section class="metric-grid">
+          <article class="metric"><span data-i18n="todaySubmissions"></span><strong id="dashSubmissions">0</strong><small data-i18n="todaySubmissionsCardHelp"></small></article>
+          <article class="metric urgent-card"><span data-i18n="missingSubmissions"></span><strong id="dashMissingCount">0</strong><small data-i18n="missingSubmissionsCardHelp"></small></article>
+          <article class="metric"><span data-i18n="openIssues"></span><strong id="dashIssues">0</strong><small data-i18n="openIssuesCardHelp"></small></article>
+          <article class="metric"><span data-i18n="latestSales"></span><strong id="dashSales"></strong><small id="dashOrders"></small></article>
+        </section>
+
+        <div class="dashboard-grid admin-sections">
+          <section class="panel">
+            <h2 data-i18n="todaySubmissions"></h2>
+            <p class="section-help" data-i18n="todaySubmissionsHelp"></p>
+            <div id="todaySubmissionsList" class="list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="missingSubmissions"></h2>
+            <p class="section-help" data-i18n="missingSubmissionsHelp"></p>
+            <div id="missingSubmissionsList" class="list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="inventoryChanges"></h2>
+            <p class="section-help" data-i18n="inventoryChangesHelp"></p>
+            <div id="inventoryChanges" class="list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="openIssues"></h2>
+            <p class="section-help" data-i18n="openIssuesHelp"></p>
+            <div id="issueList" class="issue-list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="salesUploadSummary"></h2>
+            <p class="section-help" data-i18n="salesUploadSummaryHelp"></p>
+            <div id="salesSummary" class="list"></div>
+          </section>
+          <section class="panel">
+            <h2 data-i18n="weeklySummary"></h2>
+            <p class="section-help" data-i18n="weeklySummaryHelp"></p>
+            <div id="weeklySummary" class="list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/translations.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: coffee-ops-mvp
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    envVars:
+      - key: COFFEE_OPS_DATA_DIR
+        value: /opt/render/project/src/storage
+      - key: COFFEE_OPS_ADMIN_PASSWORD
+        sync: false
+      - key: COFFEE_OPS_STAFF_PIN
+        sync: false
+    disk:
+      name: coffee-ops-data
+      mountPath: /opt/render/project/src/storage
+      sizeGB: 1

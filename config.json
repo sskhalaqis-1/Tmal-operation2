@@ -32,20 +32,13 @@
     ]
   },
   "inventoryItems": [
-    {"id": "beans_house", "name": "House espresso beans", "category": "Coffee Beans", "unit": "kg"},
-    {"id": "beans_filter", "name": "Filter coffee beans", "category": "Coffee Beans", "unit": "kg"},
-    {"id": "milk_full", "name": "Full-fat milk", "category": "Milk", "unit": "cartons"},
-    {"id": "milk_oat", "name": "Oat milk", "category": "Milk", "unit": "cartons"},
-    {"id": "cups_8oz", "name": "8oz cups", "category": "Cups", "unit": "pcs"},
-    {"id": "cups_12oz", "name": "12oz cups", "category": "Cups", "unit": "pcs"},
-    {"id": "lids_8oz", "name": "8oz lids", "category": "Lids", "unit": "pcs"},
-    {"id": "lids_12oz", "name": "12oz lids", "category": "Lids", "unit": "pcs"},
-    {"id": "bags", "name": "Takeaway bags", "category": "Packaging", "unit": "pcs"},
-    {"id": "napkins", "name": "Napkins", "category": "Packaging", "unit": "packs"},
-    {"id": "croissants", "name": "Croissants", "category": "Desserts", "unit": "pcs"},
-    {"id": "cookies", "name": "Cookies", "category": "Desserts", "unit": "pcs"},
-    {"id": "straws", "name": "Straws", "category": "Bar Supplies", "unit": "pcs"},
-    {"id": "date_labels", "name": "Date labels", "category": "Bar Supplies", "unit": "rolls"}
+    {"id": "lemon_cake", "name": "Lemon Cake", "name_ar": "كيكة ليمون", "category": "Desserts", "unit": "pcs"},
+    {"id": "chocolate_cake", "name": "Chocolate Cake", "name_ar": "كيكة شوكلت", "category": "Desserts", "unit": "pcs"},
+    {"id": "date_cake", "name": "Date Cake", "name_ar": "كيكة تمر", "category": "Desserts", "unit": "pcs"},
+    {"id": "swiss_roll", "name": "Swiss Roll", "name_ar": "سويس رول", "category": "Desserts", "unit": "pcs"},
+    {"id": "cinnamon_rolls", "name": "Cinnamon Rolls", "name_ar": "سينامون رولز", "category": "Desserts", "unit": "pcs"},
+    {"id": "classic_cookies", "name": "Classic Cookies", "name_ar": "كوكيز كلاسيك", "category": "Desserts", "unit": "pcs"},
+    {"id": "chocolate_cookies", "name": "Chocolate Cookies", "name_ar": "كوكيز شوكلت", "category": "Desserts", "unit": "pcs"}
   ],
   "issueTypes": [
     "Shortage",
