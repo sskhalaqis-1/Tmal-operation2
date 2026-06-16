@@ -189,11 +189,10 @@ window.COFFEE_OPS_TRANSLATIONS = {
   },
   ar: {
     appName: "عمليات القهوة",
-    appTagline: "تشغيل مقهى القهوة المختصة",
+    appTagline: "تشغيل مقهى تمال للقهوة المختصة",
     loginEyebrow: "صلاحيات الدخول",
     loginTitle: "سجل الدخول للمتابعة",
     loginHelp: "الموظف يرسل المهام اليومية. المدير يرى اللوحة والتقارير.",
-    demoLoginHint: "بيانات التجربة: رمز الموظف 2468، كلمة مرور المدير admin123.",
     role: "الدور",
     staff: "الموظف",
     admin: "المدير",
