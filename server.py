@@ -66,7 +66,7 @@ def default_store() -> dict:
 
 def default_config() -> dict:
     return {
-        "branches": ["Main Branch", "Training Bar"],
+        "branches": ["Main Branch"]
         "checklistTasks": {
             "opening": [
                 "Dial in espresso and record notes",
