@@ -1,11 +1,10 @@
 window.COFFEE_OPS_TRANSLATIONS = {
   en: {
-    appName: "Coffee Ops",
-    appTagline: "Specialty Coffee Operations",
+    appName: "Tmal Coffee Ops",
+    appTagline: "Tmal Specialty Coffee Operations",
     loginEyebrow: "Access control",
     loginTitle: "Sign in to continue",
     loginHelp: "Staff can submit daily work. Admin can see the dashboard and reports.",
-    demoLoginHint: "Demo access: staff PIN 2468, admin password admin123.",
     role: "Role",
     staff: "Staff",
     admin: "Admin",
