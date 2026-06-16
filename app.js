@@ -807,3 +807,28 @@ async function init() {
 }
 
 init().catch((error) => showToast(error.message));
+document.addEventListener("click", function (event) {
+  const img = event.target.closest("img");
+
+  if (!img || !img.src) return;
+
+  const overlay = document.createElement("div");
+  overlay.className = "image-lightbox";
+  overlay.innerHTML = `
+    <div class="image-lightbox-content">
+      <button class="image-lightbox-close" type="button">×</button>
+      <img src="${img.src}" alt="Full size image">
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  overlay.addEventListener("click", function (e) {
+    if (
+      e.target === overlay ||
+      e.target.classList.contains("image-lightbox-close")
+    ) {
+      overlay.remove();
+    }
+  });
+});
